@@ -6,30 +6,30 @@ root_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/.."
 platform=`uname -a | awk '{print tolower($1)}'`
 arch=`uname -m`
 version="0.15.0"
-url="https://github.com/satoshilabs/bitcoin/releases/download"
-tag="v0.15.0-big-leveldb"
+url="https://github.com/underdarkskies/ravencoin/releases/download"
+tag="v0.15.0"
 
 if [ "${platform}" == "linux" ]; then
     if [ "${arch}" == "x86_64" ]; then
-        tarball_name="bitcoin-${version}-linux64.tar.gz"
+        tarball_name="ravencoin-${version}-linux64.tar.gz"
     elif [ "${arch}" == "x86_32" ]; then
-        tarball_name="bitcoin-${version}-linux32.tar.gz"
+        tarball_name="ravencoin-${version}-linux32.tar.gz"
     fi
 elif [ "${platform}" == "darwin" ]; then
-    tarball_name="bitcoin-${version}-osx64.tar.gz"
+    tarball_name="ravencoin-${version}-osx64.tar.gz"
 else
-    echo "Bitcoin binary distribution not available for platform and architecture"
+    echo "Ravencoin binary distribution not available for platform and architecture"
     exit -1
 fi
 
 binary_url="${url}/${tag}/${tarball_name}"
 shasums_url="${url}/${tag}/SHA256SUMS.asc"
 
-download_bitcoind() {
+download_ravend() {
 
     cd "${root_dir}/bin"
 
-    echo "Downloading bitcoin: ${binary_url}"
+    echo "Downloading ravencoin: ${binary_url}"
 
     is_curl=true
     if hash curl 2>/dev/null; then
@@ -48,20 +48,20 @@ download_bitcoind() {
             wget $shasums_url
         fi
         if test -e "${tarball_name}"; then
-            echo "Unpacking bitcoin distribution"
+            echo "Unpacking ravencoin distribution"
             tar -xvzf $tarball_name
             if test $? -eq 0; then
-                ln -sf "bitcoin-${version}/bin/bitcoind"
+                ln -sf "ravencoin-${version}/bin/ravend"
                 return;
             fi
         fi
     fi
-    echo "Bitcoin binary distribution could not be downloaded"
+    echo "Ravencoin binary distribution could not be downloaded"
     exit -1
 }
 
 verify_download() {
-    echo "Verifying signatures of bitcoin download"
+    echo "Verifying signatures of ravencoin download"
     gpg --verify "${root_dir}/bin/SHA256SUMS.asc"
 
     if hash shasum 2>/dev/null; then
@@ -85,11 +85,11 @@ verify_download() {
 download=1
 verify=0
 
-if [ "${SKIP_BITCOIN_DOWNLOAD}" = 1 ]; then
+if [ "${SKIP_RAVENCOIN_DOWNLOAD}" = 1 ]; then
     download=0;
 fi
 
-if [ "${VERIFY_BITCOIN_DOWNLOAD}" = 1 ]; then
+if [ "${VERIFY_RAVENCOIN_DOWNLOAD}" = 1 ]; then
     verify=1;
 fi
 
@@ -98,10 +98,10 @@ while [ -n "$1" ]; do
   value="$2"
 
   case $param in
-    --skip-bitcoin-download)
+    --skip-ravencoin-download)
           download=0
           ;;
-    --verify-bitcoin-download)
+    --verify-ravencoin-download)
           verify=1
           ;;
   esac
@@ -109,7 +109,7 @@ while [ -n "$1" ]; do
 done
 
 if [ "${download}" = 1 ]; then
-    download_bitcoind
+    download_ravend
 fi
 
 if [ "${verify}" = 1 ]; then

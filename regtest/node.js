@@ -9,17 +9,17 @@ var log = index.log;
 log.debug = function() {};
 
 var chai = require('chai');
-var bitcore = require('bitcore-lib');
+var ravencore = require('ravencore-lib');
 var rimraf = require('rimraf');
 var node;
 
 var should = chai.should();
 
-var BitcoinRPC = require('bitcoind-rpc');
+var RavencoinRPC = require('ravend-rpc');
 var index = require('..');
-var Transaction = bitcore.Transaction;
-var BitcoreNode = index.Node;
-var BitcoinService = index.services.Bitcoin;
+var Transaction = ravencore.Transaction;
+var RavencoreNode = index.Node;
+var RavencoinService = index.services.Ravencoin;
 var testWIF = 'cSdkPxkAjA4HDr5VHgsebAPDEh9Gyub4HK8UJr2DFGGqKKy4K5sG';
 var testKey;
 var client;
@@ -36,7 +36,7 @@ describe('Node Functionality', function() {
 
     var datadir = __dirname + '/data';
 
-    testKey = bitcore.PrivateKey(testWIF);
+    testKey = ravencore.PrivateKey(testWIF);
 
     rimraf(datadir + '/regtest', function(err) {
 
@@ -48,21 +48,21 @@ describe('Node Functionality', function() {
         network: 'regtest',
         services: [
           {
-            name: 'bitcoind',
-            module: BitcoinService,
+            name: 'ravend',
+            module: RavencoinService,
             config: {
               spawn: {
                 datadir: datadir,
-                exec: path.resolve(__dirname, '../bin/bitcoind')
+                exec: path.resolve(__dirname, '../bin/ravend')
               }
             }
           }
         ]
       };
 
-      node = new BitcoreNode(configuration);
+      node = new RavencoreNode(configuration);
 
-      regtest = bitcore.Networks.get('regtest');
+      regtest = ravencore.Networks.get('regtest');
       should.exist(regtest);
 
       node.on('error', function(err) {
@@ -74,23 +74,23 @@ describe('Node Functionality', function() {
           return done(err);
         }
 
-        client = new BitcoinRPC({
+        client = new RavencoinRPC({
           protocol: 'http',
           host: '127.0.0.1',
           port: 30331,
-          user: 'bitcoin',
+          user: 'ravencoin',
           pass: 'local321',
           rejectUnauthorized: false
         });
 
         var syncedHandler = function() {
-          if (node.services.bitcoind.height === 150) {
-            node.services.bitcoind.removeListener('synced', syncedHandler);
+          if (node.services.ravend.height === 150) {
+            node.services.ravend.removeListener('synced', syncedHandler);
             done();
           }
         };
 
-        node.services.bitcoind.on('synced', syncedHandler);
+        node.services.ravend.on('synced', syncedHandler);
 
         client.generate(150, function(err) {
           if (err) {
@@ -119,9 +119,9 @@ describe('Node Functionality', function() {
       var bus = node.openBus();
       var blockExpected;
       var blockReceived;
-      bus.subscribe('bitcoind/hashblock');
-      bus.on('bitcoind/hashblock', function(data) {
-        bus.unsubscribe('bitcoind/hashblock');
+      bus.subscribe('ravend/hashblock');
+      bus.on('ravend/hashblock', function(data) {
+        bus.unsubscribe('ravend/hashblock');
         if (blockExpected) {
           data.should.be.equal(blockExpected);
           done();
@@ -149,8 +149,8 @@ describe('Node Functionality', function() {
     before(function(done) {
       this.timeout(10000);
       address = testKey.toAddress(regtest).toString();
-      var startHeight = node.services.bitcoind.height;
-      node.services.bitcoind.on('tip', function(height) {
+      var startHeight = node.services.ravend.height;
+      node.services.ravend.on('tip', function(height) {
         if (height === startHeight + 3) {
           done();
         }
@@ -248,26 +248,26 @@ describe('Node Functionality', function() {
         /* jshint maxstatements: 50 */
 
         // Finished once all blocks have been mined
-        var startHeight = node.services.bitcoind.height;
-        node.services.bitcoind.on('tip', function(height) {
+        var startHeight = node.services.ravend.height;
+        node.services.ravend.on('tip', function(height) {
           if (height === startHeight + 5) {
             done();
           }
         });
 
-        testKey2 = bitcore.PrivateKey.fromWIF('cNfF4jXiLHQnFRsxaJyr2YSGcmtNYvxQYSakNhuDGxpkSzAwn95x');
+        testKey2 = ravencore.PrivateKey.fromWIF('cNfF4jXiLHQnFRsxaJyr2YSGcmtNYvxQYSakNhuDGxpkSzAwn95x');
         address2 = testKey2.toAddress(regtest).toString();
 
-        testKey3 = bitcore.PrivateKey.fromWIF('cVTYQbaFNetiZcvxzXcVMin89uMLC43pEBMy2etgZHbPPxH5obYt');
+        testKey3 = ravencore.PrivateKey.fromWIF('cVTYQbaFNetiZcvxzXcVMin89uMLC43pEBMy2etgZHbPPxH5obYt');
         address3 = testKey3.toAddress(regtest).toString();
 
-        testKey4 = bitcore.PrivateKey.fromWIF('cPNQmfE31H2oCUFqaHpfSqjDibkt7XoT2vydLJLDHNTvcddCesGw');
+        testKey4 = ravencore.PrivateKey.fromWIF('cPNQmfE31H2oCUFqaHpfSqjDibkt7XoT2vydLJLDHNTvcddCesGw');
         address4 = testKey4.toAddress(regtest).toString();
 
-        testKey5 = bitcore.PrivateKey.fromWIF('cVrzm9gCmnzwEVMGeCxY6xLVPdG3XWW97kwkFH3H3v722nb99QBF');
+        testKey5 = ravencore.PrivateKey.fromWIF('cVrzm9gCmnzwEVMGeCxY6xLVPdG3XWW97kwkFH3H3v722nb99QBF');
         address5 = testKey5.toAddress(regtest).toString();
 
-        testKey6 = bitcore.PrivateKey.fromWIF('cPfMesNR2gsQEK69a6xe7qE44CZEZavgMUak5hQ74XDgsRmmGBYF');
+        testKey6 = ravencore.PrivateKey.fromWIF('cPfMesNR2gsQEK69a6xe7qE44CZEZavgMUak5hQ74XDgsRmmGBYF');
         address6 = testKey6.toAddress(regtest).toString();
 
         var tx = new Transaction();
@@ -660,14 +660,14 @@ describe('Node Functionality', function() {
       });
 
       it('will update the mempool index after new tx', function(done) {
-        var memAddress = bitcore.PrivateKey().toAddress(node.network).toString();
+        var memAddress = ravencore.PrivateKey().toAddress(node.network).toString();
         var tx = new Transaction();
         tx.from(unspentOutput);
         tx.to(memAddress, unspentOutput.satoshis - 1000);
         tx.fee(1000);
         tx.sign(testKey);
 
-        node.services.bitcoind.sendTransaction(tx.serialize(), function(err, hash) {
+        node.services.ravend.sendTransaction(tx.serialize(), function(err, hash) {
           node.getAddressTxids(memAddress, {}, function(err, txids) {
             if (err) {
               return done(err);

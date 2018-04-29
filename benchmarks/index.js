@@ -1,15 +1,15 @@
-'use strict';
+Ravencore'use strict';
 
 var benchmark = require('benchmark');
-var bitcoin = require('bitcoin');
+var ravencoin = require('ravencoin');
 var async = require('async');
 var maxTime = 20;
 
-console.log('Bitcoin Service native interface vs. Bitcoin JSON RPC interface');
+console.log('Ravencoin Service native interface vs. Ravencoin JSON RPC interface');
 console.log('----------------------------------------------------------------------');
 
-// To run the benchmarks a fully synced Bitcore Core directory is needed. The RPC comands
-// can be modified to match the settings in bitcoin.conf.
+// To run the benchmarks a fully synced Ravencoin directory is needed. The RPC comands
+// can be modified to match the settings in raven.conf.
 
 var fixtureData = {
   blockHashes: [
@@ -26,34 +26,34 @@ var fixtureData = {
   ]
 };
 
-var bitcoind = require('../').services.Bitcoin({
+var ravend = require('../').services.Ravencoin({
   node: {
-    datadir: process.env.HOME + '/.bitcoin',
+    datadir: process.env.HOME + '/.raven',
     network: {
       name: 'testnet'
     }
   }
 });
 
-bitcoind.on('error', function(err) {
+ravend.on('error', function(err) {
   console.error(err.message);
 });
 
-bitcoind.start(function(err) {
+ravend.start(function(err) {
   if (err) {
     throw err;
   }
-  console.log('Bitcoin Core started');
+  console.log('Ravencoin started');
 });
 
-bitcoind.on('ready', function() {
+ravend.on('ready', function() {
 
-  console.log('Bitcoin Core ready');
+  console.log('Ravencoin ready');
 
-  var client = new bitcoin.Client({
+  var client = new ravencoin.Client({
     host: 'localhost',
     port: 18332,
-    user: 'bitcoin',
+    user: 'raven',
     pass: 'local321'
   });
 
@@ -64,12 +64,12 @@ bitcoind.on('ready', function() {
       var hashesLength = fixtureData.blockHashes.length;
       var txLength = fixtureData.txHashes.length;
 
-      function bitcoindGetBlockNative(deffered) {
+      function ravendGetBlockNative(deffered) {
         if (c >= hashesLength) {
           c = 0;
         }
         var hash = fixtureData.blockHashes[c];
-        bitcoind.getBlock(hash, function(err, block) {
+        ravend.getBlock(hash, function(err, block) {
           if (err) {
             throw err;
           }
@@ -78,7 +78,7 @@ bitcoind.on('ready', function() {
         c++;
       }
 
-      function bitcoindGetBlockJsonRpc(deffered) {
+      function ravendGetBlockJsonRpc(deffered) {
         if (c >= hashesLength) {
           c = 0;
         }
@@ -92,12 +92,12 @@ bitcoind.on('ready', function() {
         c++;
       }
 
-      function bitcoinGetTransactionNative(deffered) {
+      function ravenGetTransactionNative(deffered) {
         if (c >= txLength) {
           c = 0;
         }
         var hash = fixtureData.txHashes[c];
-        bitcoind.getTransaction(hash, true, function(err, tx) {
+        ravend.getTransaction(hash, true, function(err, tx) {
           if (err) {
             throw err;
           }
@@ -106,7 +106,7 @@ bitcoind.on('ready', function() {
         c++;
       }
 
-      function bitcoinGetTransactionJsonRpc(deffered) {
+      function ravenGetTransactionJsonRpc(deffered) {
         if (c >= txLength) {
           c = 0;
         }
@@ -122,22 +122,22 @@ bitcoind.on('ready', function() {
 
       var suite = new benchmark.Suite();
 
-      suite.add('bitcoind getblock (native)', bitcoindGetBlockNative, {
+      suite.add('ravend getblock (native)', ravendGetBlockNative, {
         defer: true,
         maxTime: maxTime
       });
 
-      suite.add('bitcoind getblock (json rpc)', bitcoindGetBlockJsonRpc, {
+      suite.add('ravend getblock (json rpc)', ravendGetBlockJsonRpc, {
         defer: true,
         maxTime: maxTime
       });
 
-      suite.add('bitcoind gettransaction (native)', bitcoinGetTransactionNative, {
+      suite.add('ravend gettransaction (native)', ravenGetTransactionNative, {
         defer: true,
         maxTime: maxTime
       });
 
-      suite.add('bitcoind gettransaction (json rpc)', bitcoinGetTransactionJsonRpc, {
+      suite.add('ravend gettransaction (json rpc)', ravenGetTransactionJsonRpc, {
         defer: true,
         maxTime: maxTime
       });
@@ -158,7 +158,7 @@ bitcoind.on('ready', function() {
       throw err;
     }
     console.log('Finished');
-    bitcoind.stop(function(err) {
+    ravend.stop(function(err) {
       if (err) {
         console.error('Fail to stop services: ' + err);
         process.exit(1);
