@@ -769,7 +769,7 @@ describe('Ravencoin Service', function() {
         }
       };
       var ravend = new RavencoinService(config);
-      ravend._getDefaultConf().rpcport.should.equal(8332);
+      ravend._getDefaultConf().rpcport.should.equal(8766);
     });
     it('will get default rpc port for testnet', function() {
       var config = {
