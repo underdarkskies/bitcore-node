@@ -22,7 +22,7 @@ Services correspond with a Node.js module as described in 'package.json', for ex
   "dependencies": {
     "ravencore-lib": "underdarkskies/ravencore-lib",
     "ravencore-node": "underdarkskies/ravencore-node",
-    "insight-api": "^3.0.0"
+    "insight-api": "underdarkskies/insight-api"
   }
 }
 ```
