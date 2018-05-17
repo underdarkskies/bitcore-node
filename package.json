@@ -45,8 +45,8 @@
   ],
   "dependencies": {
     "async": "^1.3.0",
-    "ravend-rpc": "underdarkskies/ravend-rpc",
-    "ravencore-lib": "underdarkskies/ravencore-lib",
+    "ravend-rpc": "underdarkskies/ravend-rpc#DEV",
+    "ravencore-lib": "underdarkskies/ravencore-lib#DEV",
     "body-parser": "^1.13.3",
     "colors": "^1.1.2",
     "commander": "^2.8.1",
@@ -69,7 +69,7 @@
   },
   "devDependencies": {
     "benchmark": "1.0.0",
-    "ravencore-p2p": "underdarkskies/ravencore-p2p",
+    "ravencore-p2p": "underdarkskies/ravencore-p2p#DEV",
     "chai": "^3.5.0",
     "coveralls": "^2.11.9",
     "istanbul": "^0.4.3",
