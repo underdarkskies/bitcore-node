@@ -29,7 +29,6 @@ fakeSocket.on('test/event1', function(data) {
 
 fakeSocketListener.emit('connection', fakeSocket);
 fakeSocket.emit('subscribe', 'test/event1');
-
 var WebService = proxyquire('../../lib/services/web', {http: httpStub, https: httpsStub, fs: fsStub});
 
 describe('WebService', function() {
@@ -278,7 +277,9 @@ describe('WebService', function() {
 
   describe('#socketHandler', function() {
     var sandbox = sinon.sandbox.create();
-    beforeEach(function() {
+    
+	
+	beforeEach(function() {
       sandbox.stub(log, 'info');
     });
     afterEach(function() {
@@ -321,6 +322,7 @@ describe('WebService', function() {
       socket.client = {};
       socket.client.request = {};
       socket.client.request.headers = {};
+	  node.allowedOriginRegexp = new RegExp('.*');
       web.socketHandler(socket);
       socket.emit('message', 'data');
     });
