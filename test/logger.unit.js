@@ -6,6 +6,7 @@ var should = chai.should();
 var Logger = require('../lib/logger');
 
 describe('Logger', function() {
+  process.env.RAVENCORE_ENV = 'debug';
   var sandbox = sinon.sandbox.create();
   afterEach(function() {
     sandbox.restore();
@@ -40,12 +41,12 @@ describe('Logger', function() {
     logger.error(new Error('Test error log'));
     console.error.callCount.should.equal(1);
     console.error.restore();
-
+/**
     sandbox.stub(console, 'log');
     logger.debug('Test debug log');
     console.log.callCount.should.equal(1);
     console.log.restore();
-
+*/
     sandbox.stub(console, 'warn');
     logger.warn('Test warn log');
     console.warn.callCount.should.equal(1);
@@ -66,13 +67,13 @@ describe('Logger', function() {
     console.error.callCount.should.equal(1);
     console.error.args[0][0].should.be.instanceof(Error);
     console.error.restore();
-
+/**
     sandbox.stub(console, 'log');
     logger.debug('Test debug log');
     console.log.callCount.should.equal(1);
     should.equal(console.log.args[0][0].match(/^\[/), null);
     console.log.restore();
-
+*/
     sandbox.stub(console, 'warn');
     logger.warn('Test warn log');
     console.warn.callCount.should.equal(1);
