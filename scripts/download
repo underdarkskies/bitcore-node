@@ -5,18 +5,18 @@ set -e
 root_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/.."
 platform=`uname -a | awk '{print tolower($1)}'`
 arch=`uname -m`
-version="0.15.3"
-url="https://github.com/underdarkskies/ravencoin-extended/releases/download"
-tag="v0.15.3"
+version="2.0.1"
+url="https://github.com/underdarkskies/ravencoin/releases/download"
+tag="v2.0.1"
 
 if [ "${platform}" == "linux" ]; then
     if [ "${arch}" == "x86_64" ]; then
-        tarball_name="ravencoin-${version}-linux64.tar.gz"
+        tarball_name="raven-${version}-x86_64-linux-gnu.tar.gz"
     elif [ "${arch}" == "x86_32" ]; then
-        tarball_name="ravencoin-${version}-linux32.tar.gz"
+        tarball_name="raven-${version}-i686-pc-linux-gnu.tar.gz"
     fi
 elif [ "${platform}" == "darwin" ]; then
-    tarball_name="ravencoin-${version}-osx64.tar.gz"
+    tarball_name="raven-${version}-osx64.tar.gz"
 else
     echo "Ravencoin binary distribution not available for platform and architecture"
     exit -1
@@ -51,7 +51,7 @@ download_ravend() {
             echo "Unpacking ravencoin distribution"
             tar -xvzf $tarball_name
             if test $? -eq 0; then
-                ln -sf "ravencoin-${version}/bin/ravend"
+                ln -sf "raven-${version}/bin/ravend"
                 return;
             fi
         fi
