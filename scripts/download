@@ -16,7 +16,7 @@ if [ "${platform}" == "linux" ]; then
         tarball_name="raven-${version}-i686-pc-linux-gnu.tar.gz"
     fi
 elif [ "${platform}" == "darwin" ]; then
-    tarball_name="ravencoin-${version}-osx64.tar.gz"
+    tarball_name="raven-${version}-osx64.tar.gz"
 else
     echo "Ravencoin binary distribution not available for platform and architecture"
     exit -1
