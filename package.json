@@ -14,7 +14,7 @@
     "ravend": "./bin/ravend"
   },
   "scripts": {
-    "postinstall": "./scripts/download",
+    "preinstall": "./scripts/download",
     "verify": "./scripts/download --skip-ravencoin-download --verify-ravencoin-download",
     "test": "mocha -R spec --recursive",
     "regtest": "./scripts/regtest",
