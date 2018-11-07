@@ -829,7 +829,7 @@ describe('Ravencoin Service', function() {
         }
       };
       var ravend = new RavencoinService(config);
-      ravend._getNetworkConfigPath().should.equal('testnet3/raven.conf');
+      ravend._getNetworkConfigPath().should.equal('testnet6/raven.conf');
     });
     it('will get default rpc port for regtest', function() {
       ravencore.Networks.enableRegtest();
