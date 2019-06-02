@@ -16,14 +16,15 @@ if [ "${platform}" == "linux" ]; then
         tarball_name="raven-${version}-i686-pc-linux-gnu.tar.gz"
     fi
 elif [ "${platform}" == "darwin" ]; then
-    tarball_name="raven-${version}-osx64.tar.gz"
+    version="2.2.2"
+    tarball_name="raven-${version}-osx.dmg"
 else
     echo "Ravencoin binary distribution not available for platform and architecture"
     exit -1
 fi
 
 binary_url="${url}/${tag}/${tarball_name}"
-shasums_url="${url}/${tag}/SHA256SUMS.asc"
+shasums_url="${url}/${tag}/${tarball_name}.sha256sum"
 
 download_ravend() {
 
@@ -49,10 +50,18 @@ download_ravend() {
         fi
         if test -e "${tarball_name}"; then
             echo "Unpacking ravencoin distribution"
-            tar -xvzf $tarball_name
-            if test $? -eq 0; then
-                ln -sf "raven-${version}/bin/ravend"
+            if [ "${platform}" == "darwin" ]; then
+                hdiutil attach -nobrowse ./${tarball_name}
+                cp /Volumes/Raven\ Core/Raven-Qt.app/Contents/MacOS/ravend ./
+                hdiutil detach /Volumes/Raven\ Core
+                rm ./${tarball_name}
                 return;
+            else
+                tar -xvzf $tarball_name
+                if test $? -eq 0; then
+                    ln -sf "raven-${version}/bin/ravend"
+                    return;
+                fi
             fi
         fi
     fi
