@@ -77,6 +77,7 @@ describe('Ravencoin Service', function() {
       var ravend = new RavencoinService(baseConfig);
       ravend.subscriptions.should.deep.equal({
         address: {},
+		balance: {},
         rawtransaction: [],
         hashblock: []
       });
@@ -104,7 +105,7 @@ describe('Ravencoin Service', function() {
       var ravend = new RavencoinService(baseConfig);
       var methods = ravend.getAPIMethods();
       should.exist(methods);
-      methods.length.should.equal(22);
+      methods.length.should.equal(32);
     });
   });
 
@@ -113,7 +114,8 @@ describe('Ravencoin Service', function() {
       var ravend = new RavencoinService(baseConfig);
       var events = ravend.getPublishEvents();
       should.exist(events);
-      events.length.should.equal(3);
+      events.length.should.equal(4);
+	  console.log(events);
       events[0].name.should.equal('ravend/rawtransaction');
       events[0].scope.should.equal(ravend);
       events[0].subscribe.should.be.a('function');
@@ -126,6 +128,10 @@ describe('Ravencoin Service', function() {
       events[2].scope.should.equal(ravend);
       events[2].subscribe.should.be.a('function');
       events[2].unsubscribe.should.be.a('function');
+	  events[3].name.should.equal('ravend/addressbalance');
+      events[3].scope.should.equal(ravend);
+      events[3].subscribe.should.be.a('function');
+      events[3].unsubscribe.should.be.a('function');
     });
     it('will call subscribe/unsubscribe with correct args', function() {
       var ravend = new RavencoinService(baseConfig);
@@ -2409,7 +2415,7 @@ describe('Ravencoin Service', function() {
           getAddressUtxos: sinon.stub().callsArgWith(1, null, {
             result: confirmedUtxos
           }),
-          getAddressMempool: sinon.stub().callsArgWith(1, null, {
+          getAddressMempool: sinon.stub().callsArgWith(2, null, {
             result: deltas
           })
         }
@@ -2472,7 +2478,7 @@ describe('Ravencoin Service', function() {
           getAddressUtxos: sinon.stub().callsArgWith(1, null, {
             result: confirmedUtxos
           }),
-          getAddressMempool: sinon.stub().callsArgWith(1, null, {
+          getAddressMempool: sinon.stub().callsArgWith(2, null, {
             result: deltas
           })
         }
@@ -2559,7 +2565,7 @@ describe('Ravencoin Service', function() {
           getAddressUtxos: sinon.stub().callsArgWith(1, null, {
             result: confirmedUtxos
           }),
-          getAddressMempool: sinon.stub().callsArgWith(1, null, {
+          getAddressMempool: sinon.stub().callsArgWith(2, null, {
             result: deltas
           })
         }
@@ -2641,7 +2647,7 @@ describe('Ravencoin Service', function() {
           getAddressUtxos: sinon.stub().callsArgWith(1, null, {
             result: confirmedUtxos
           }),
-          getAddressMempool: sinon.stub().callsArgWith(1, null, {
+          getAddressMempool: sinon.stub().callsArgWith(2, null, {
             result: deltas
           })
         }
@@ -2691,7 +2697,7 @@ describe('Ravencoin Service', function() {
           getAddressUtxos: sinon.stub().callsArgWith(1, null, {
             result: confirmedUtxos
           }),
-          getAddressMempool: sinon.stub().callsArgWith(1, null, {
+          getAddressMempool: sinon.stub().callsArgWith(2, null, {
             result: deltas
           })
         }
@@ -2734,7 +2740,7 @@ describe('Ravencoin Service', function() {
           getAddressUtxos: sinon.stub().callsArgWith(1, null, {
             result: confirmedUtxos
           }),
-          getAddressMempool: sinon.stub().callsArgWith(1, null, {
+          getAddressMempool: sinon.stub().callsArgWith(2, null, {
             result: deltas
           })
         }
@@ -2755,7 +2761,7 @@ describe('Ravencoin Service', function() {
       var ravend = new RavencoinService(baseConfig);
       ravend.nodes.push({
         client: {
-          getAddressMempool: sinon.stub().callsArgWith(1, {code: -1, message: 'test'})
+          getAddressMempool: sinon.stub().callsArgWith(2, {code: -1, message: 'test'})
         }
       });
       var options = {
@@ -2769,7 +2775,7 @@ describe('Ravencoin Service', function() {
     });
     it('should set query mempool if undefined', function(done) {
       var ravend = new RavencoinService(baseConfig);
-      var getAddressMempool = sinon.stub().callsArgWith(1, {code: -1, message: 'test'});
+      var getAddressMempool = sinon.stub().callsArgWith(2, {code: -1, message: 'test'});
       ravend.nodes.push({
         client: {
           getAddressMempool: getAddressMempool
