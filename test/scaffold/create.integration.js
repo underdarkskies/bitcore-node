@@ -24,7 +24,7 @@ var rimraf = require('rimraf');
 
 describe('#create', function() {
 
-  var basePath = __dirname + '/../';
+  var basePath = __dirname + '/';
   var testDir = basePath + 'temporary-test-data';
 
   before(function(done) {
@@ -65,14 +65,15 @@ describe('#create', function() {
       }
 
       var configPath = testDir + '/mynode/ravencore-node.json';
+	  console.log(configPath);
       var packagePath = testDir + '/mynode/package.json';
 
       should.equal(fs.existsSync(configPath), true);
       should.equal(fs.existsSync(packagePath), true);
 
       var config = JSON.parse(fs.readFileSync(configPath));
-      config.services.should.deep.equal(['ravend', 'db', 'address', 'web']);
-      config.datadir.should.equal('./data');
+      config.services.should.deep.equal(['ravend', 'web']);
+      config.servicesConfig.ravend.spawn.datadir.should.equal('./data');
       config.network.should.equal('livenet');
 
       var pack = JSON.parse(fs.readFileSync(packagePath));
