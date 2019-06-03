@@ -115,7 +115,6 @@ describe('Ravencoin Service', function() {
       var events = ravend.getPublishEvents();
       should.exist(events);
       events.length.should.equal(4);
-	  console.log(events);
       events[0].name.should.equal('ravend/rawtransaction');
       events[0].scope.should.equal(ravend);
       events[0].subscribe.should.be.a('function');
@@ -4790,24 +4789,63 @@ describe('Ravencoin Service', function() {
         done();
       });
     });
-    it('will set height to -1 if missing height', function(done) {
-      var ravend = new RavencoinService(baseConfig);
-      var rawTransaction = JSON.parse((JSON.stringify(rpcRawTransaction)));
-      delete rawTransaction.height;
-      ravend.nodes.push({
-        client: {
-          getRawTransaction: sinon.stub().callsArgWith(2, null, {
-            result: rawTransaction
-          })
-        }
-      });
-      var txid = '2d950d00494caf6bfc5fff2a3f839f0eb50f663ae85ce092bc5f9d45296ae91f';
-      ravend.getDetailedTransaction(txid, function(err, tx) {
-        should.exist(tx);
-        should.equal(tx.height, -1);
-        done();
-      });
-    });
+	it('will set height to -1 if missing height and get time from raw transaction', function(done) {
+		var ravend = new RavencoinService(baseConfig);
+		sinon.spy(ravend, '_tryAllClients');
+		var rawTransaction = JSON.parse((JSON.stringify(rpcRawTransaction)));
+		delete rawTransaction.height;
+		var getRawTransaction = sinon.stub().callsArgWith(2, null, {
+			result: rawTransaction
+		});
+		var getMempoolEntry = sinon.stub().callsArgWith(1, null, {
+			result: {}
+		});
+		ravend.nodes.push({
+			client: {
+				getRawTransaction: getRawTransaction,
+				getMempoolEntry: getMempoolEntry
+			}
+		});
+		var txid = '2d950d00494caf6bfc5fff2a3f839f0eb50f663ae85ce092bc5f9d45296ae91f';
+		ravend.getDetailedTransaction(txid, function(err, tx) {
+			should.exist(tx);
+			ravend._tryAllClients.callCount.should.equal(1);
+			getRawTransaction.callCount.should.equal(1);
+			should.equal(tx.height, -1);
+			should.equal(tx.blockTimestamp, 1439559434000);
+			done();
+		});
+	});
+	it('will set height to -1 if missing height and get time from mempoolentry', function(done) {
+		var ravend = new RavencoinService(baseConfig);
+		sinon.spy(ravend, '_tryAllClients');
+		var rawTransaction = JSON.parse((JSON.stringify(rpcRawTransaction)));
+		delete rawTransaction.time;
+		delete rawTransaction.height;
+		var getRawTransaction = sinon.stub().callsArgWith(2, null, {
+			result: rawTransaction
+		});
+		var getMempoolEntry = sinon.stub().callsArgWith(1, null, {
+			result: {
+				time: 1439559434000
+			}
+		});
+		ravend.nodes.push({
+			client: {
+				getRawTransaction: getRawTransaction,
+				getMempoolEntry: getMempoolEntry
+			}
+		});
+		var txid = '2d950d00494caf6bfc5fff2a3f839f0eb50f663ae85ce092bc5f9d45296ae91f';
+		ravend.getDetailedTransaction(txid, function(err, tx) {
+			should.exist(tx);
+			ravend._tryAllClients.callCount.should.equal(1);
+			getRawTransaction.callCount.should.equal(1);
+			should.equal(tx.height, -1);
+			should.equal(tx.receivedTime, 1439559434000);
+			done();
+		});
+	});
   });
 
   describe('#getBestBlockHash', function() {
