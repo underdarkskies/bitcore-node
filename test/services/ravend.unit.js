@@ -2360,6 +2360,7 @@ describe('Ravencoin Service', function() {
           txid: 'e9dcf22807db77ac0276b03cc2d3a8b03c4837db8ac6650501ef45af1c807cce',
           satoshis: -7679241,
           address: 'RM1FZ5Q4sKxsM1a97dLoUrjZYHZ7B6MKja',
+		  assetName: 'RVN',
           index: 0,
           timestamp: 1461342707725,
           prevtxid: '46f24e0c274fc07708b781963576c4c5d5625d926dbb0a17fa865dcd9fe58ea0',
@@ -2369,6 +2370,7 @@ describe('Ravencoin Service', function() {
           txid: 'f637384e9f81f18767ea50e00bce58fc9848b6588a1130529eebba22a410155f',
           satoshis: 100000,
           address: 'RM1FZ5Q4sKxsM1a97dLoUrjZYHZ7B6MKja',
+		  assetName: 'RVN',
           index: 0,
           timestamp: 1461342833133
         },
@@ -2376,6 +2378,7 @@ describe('Ravencoin Service', function() {
           txid: 'f71bccef3a8f5609c7f016154922adbfe0194a96fb17a798c24077c18d0a9345',
           satoshis: 400000,
           address: 'RM1FZ5Q4sKxsM1a97dLoUrjZYHZ7B6MKja',
+		  assetName: 'RVN',
           index: 1,
           timestamp: 1461342954813
         }
@@ -2384,6 +2387,7 @@ describe('Ravencoin Service', function() {
       var confirmedUtxos = [
         {
           address: 'RM1FZ5Q4sKxsM1a97dLoUrjZYHZ7B6MKja',
+		  assetName: 'RVN',
           txid: '46f24e0c274fc07708b781963576c4c5d5625d926dbb0a17fa865dcd9fe58ea0',
           outputIndex: 1,
           script: '76a914f399b4b8894f1153b96fce29f05e6e116eb4c21788ac',
@@ -2394,7 +2398,7 @@ describe('Ravencoin Service', function() {
       var expectedUtxos = [
         {
           address: 'RM1FZ5Q4sKxsM1a97dLoUrjZYHZ7B6MKja',
-		  assetName: undefined,
+		  assetName: 'RVN',
           outputIndex: 1,
           satoshis: 400000,
           script: '76a914809dc14496f99b6deb722cf46d89d22f4beb8efd88ac',
@@ -2403,7 +2407,7 @@ describe('Ravencoin Service', function() {
         },
         {
           address: 'RM1FZ5Q4sKxsM1a97dLoUrjZYHZ7B6MKja',
-		  assetName: undefined,
+		  assetName: 'RVN',
           outputIndex: 0,
           satoshis: 100000,
           script: '76a914809dc14496f99b6deb722cf46d89d22f4beb8efd88ac',
@@ -2440,6 +2444,7 @@ describe('Ravencoin Service', function() {
           txid: 'e9dcf22807db77ac0276b03cc2d3a8b03c4837db8ac6650501ef45af1c807cce',
           satoshis: -7679241,
           address: 'RM1FZ5Q4sKxsM1a97dLoUrjZYHZ7B6MKja',
+		  assetName: 'RVN',
           index: 0,
           timestamp: 1461342707725,
           prevtxid: '46f24e0c274fc07708b781963576c4c5d5625d926dbb0a17fa865dcd9fe58ea0',
@@ -2466,6 +2471,7 @@ describe('Ravencoin Service', function() {
       var confirmedUtxos = [
         {
           address: 'RM1FZ5Q4sKxsM1a97dLoUrjZYHZ7B6MKja',
+		  assetName: 'RVN',
           txid: '46f24e0c274fc07708b781963576c4c5d5625d926dbb0a17fa865dcd9fe58ea0',
           outputIndex: 1,
           script: '76a914f399b4b8894f1153b96fce29f05e6e116eb4c21788ac',
@@ -2514,6 +2520,7 @@ describe('Ravencoin Service', function() {
           txid: 'e9dcf22807db77ac0276b03cc2d3a8b03c4837db8ac6650501ef45af1c807cce',
           satoshis: -7679241,
           address: 'RM1FZ5Q4sKxsM1a97dLoUrjZYHZ7B6MKja',
+		  assetName: 'RVN',
           index: 0,
           timestamp: 1461342707725,
           prevtxid: '46f24e0c274fc07708b781963576c4c5d5625d926dbb0a17fa865dcd9fe58ea0',
@@ -2523,6 +2530,7 @@ describe('Ravencoin Service', function() {
           txid: 'e9dcf22807db77ac0276b03cc2d3a8b03c4837db8ac6650501ef45af1c807cce',
           satoshis: -7679241,
           address: 'RM1FZ5Q4sKxsM1a97dLoUrjZYHZ7B6MKja',
+		  assetName: 'RVN',
           index: 1,
           timestamp: 1461342707725,
           prevtxid: '46f24e0c274fc07708b781963576c4c5d5625d926dbb0a17fa865dcd9fe58ea0',
@@ -2533,6 +2541,7 @@ describe('Ravencoin Service', function() {
       var confirmedUtxos = [
         {
           address: 'RM1FZ5Q4sKxsM1a97dLoUrjZYHZ7B6MKja',
+		  assetName: 'RVN',
           txid: '46f24e0c274fc07708b781963576c4c5d5625d926dbb0a17fa865dcd9fe58ea0',
           outputIndex: 1,
           script: '76a914f399b4b8894f1153b96fce29f05e6e116eb4c21788ac',
@@ -2541,6 +2550,7 @@ describe('Ravencoin Service', function() {
         },
         {
           address: 'RM1FZ5Q4sKxsM1a97dLoUrjZYHZ7B6MKja',
+		  assetName: 'RVN',
           txid: '46f24e0c274fc07708b781963576c4c5d5625d926dbb0a17fa865dcd9fe58ea0',
           outputIndex: 2,
           script: '76a914f399b4b8894f1153b96fce29f05e6e116eb4c21788ac',
@@ -2576,6 +2586,7 @@ describe('Ravencoin Service', function() {
           txid: 'e9dcf22807db77ac0276b03cc2d3a8b03c4837db8ac6650501ef45af1c807cce',
           satoshis: -7679241,
           address: 'RM1FZ5Q4sKxsM1a97dLoUrjZYHZ7B6MKja',
+		  assetName: 'RVN',
           index: 0,
           timestamp: 1461342707725,
           prevtxid: '46f24e0c274fc07708b781963576c4c5d5625d926dbb0a17fa865dcd9fe58ea0',
@@ -2585,6 +2596,7 @@ describe('Ravencoin Service', function() {
           txid: 'e9dcf22807db77ac0276b03cc2d3a8b03c4837db8ac6650501ef45af1c807cce',
           satoshis: -7679241,
           address: 'RM1FZ5Q4sKxsM1a97dLoUrjZYHZ7B6MKja',
+		  assetName: 'RVN',
           index: 0,
           timestamp: 1461342707725,
           prevtxid: '46f24e0c274fc07708b781963576c4c5d5625d926dbb0a17fa865dcd9fe58ea0',
@@ -2594,6 +2606,7 @@ describe('Ravencoin Service', function() {
           txid: 'e9dcf22807db77ac0276b03cc2d3a8b03c4837db8ac6650501ef45af1c807cce',
           satoshis: -7679241,
           address: 'RM1FZ5Q4sKxsM1a97dLoUrjZYHZ7B6MKja',
+		  assetName: 'RVN',
           index: 1,
           timestamp: 1461342707725,
           prevtxid: '46f24e0c274fc07708b781963576c4c5d5625d926dbb0a17fa865dcd9fe58ea0',
@@ -2603,6 +2616,7 @@ describe('Ravencoin Service', function() {
           txid: 'e9dcf22807db77ac0276b03cc2d3a8b03c4837db8ac6650501ef45af1c807cce',
           satoshis: 100000,
           address: 'RM1FZ5Q4sKxsM1a97dLoUrjZYHZ7B6MKja',
+		  assetName: 'RVN',
           index: 1,
           script: '76a914809dc14496f99b6deb722cf46d89d22f4beb8efd88ac',
           timestamp: 1461342833133
@@ -2612,6 +2626,7 @@ describe('Ravencoin Service', function() {
       var confirmedUtxos = [
         {
           address: 'RM1FZ5Q4sKxsM1a97dLoUrjZYHZ7B6MKja',
+		  assetName: 'RVN',
           txid: '46f24e0c274fc07708b781963576c4c5d5625d926dbb0a17fa865dcd9fe58ea0',
           outputIndex: 0,
           script: '76a914f399b4b8894f1153b96fce29f05e6e116eb4c21788ac',
@@ -2620,6 +2635,7 @@ describe('Ravencoin Service', function() {
         },
         {
           address: 'RM1FZ5Q4sKxsM1a97dLoUrjZYHZ7B6MKja',
+		  assetName: 'RVN',
           txid: '46f24e0c274fc07708b781963576c4c5d5625d926dbb0a17fa865dcd9fe58ea0',
           outputIndex: 1,
           script: '76a914f399b4b8894f1153b96fce29f05e6e116eb4c21788ac',
@@ -2628,6 +2644,7 @@ describe('Ravencoin Service', function() {
         },
         {
           address: 'RM1FZ5Q4sKxsM1a97dLoUrjZYHZ7B6MKja',
+		  assetName: 'RVN',
           txid: '46f24e0c274fc07708b781963576c4c5d5625d926dbb0a17fa865dcd9fe58ea0',
           outputIndex: 2,
           script: '76a914f399b4b8894f1153b96fce29f05e6e116eb4c21788ac',
@@ -2663,6 +2680,7 @@ describe('Ravencoin Service', function() {
           txid: '46f24e0c274fc07708b781963576c4c5d5625d926dbb0a17fa865dcd9fe58ea0',
           satoshis: 7679241,
           address: 'RM1FZ5Q4sKxsM1a97dLoUrjZYHZ7B6MKja',
+		  assetName: 'RVN',
           index: 0,
           timestamp: 1461342707724
         },
@@ -2670,6 +2688,7 @@ describe('Ravencoin Service', function() {
           txid: '46f24e0c274fc07708b781963576c4c5d5625d926dbb0a17fa865dcd9fe58ea0',
           satoshis: 7679241,
           address: 'RM1FZ5Q4sKxsM1a97dLoUrjZYHZ7B6MKja',
+		  assetName: 'RVN',
           index: 1,
           timestamp: 1461342707724
         },
@@ -2677,6 +2696,7 @@ describe('Ravencoin Service', function() {
           txid: '46f24e0c274fc07708b781963576c4c5d5625d926dbb0a17fa865dcd9fe58ea0',
           satoshis: 7679241,
           address: 'RM1FZ5Q4sKxsM1a97dLoUrjZYHZ7B6MKja',
+		  assetName: 'RVN',
           timestamp: 1461342707724,
           index: 2,
         },
@@ -2684,6 +2704,7 @@ describe('Ravencoin Service', function() {
           txid: 'e9dcf22807db77ac0276b03cc2d3a8b03c4837db8ac6650501ef45af1c807cce',
           satoshis: -7679241,
           address: 'RM1FZ5Q4sKxsM1a97dLoUrjZYHZ7B6MKja',
+		  assetName: 'RVN',
           index: 0,
           timestamp: 1461342707725,
           prevtxid: '46f24e0c274fc07708b781963576c4c5d5625d926dbb0a17fa865dcd9fe58ea0',
@@ -2693,6 +2714,7 @@ describe('Ravencoin Service', function() {
           txid: 'e9dcf22807db77ac0276b03cc2d3a8b03c4837db8ac6650501ef45af1c807cce',
           satoshis: -7679241,
           address: 'RM1FZ5Q4sKxsM1a97dLoUrjZYHZ7B6MKja',
+		  assetName: 'RVN',
           index: 0,
           timestamp: 1461342707725,
           prevtxid: '46f24e0c274fc07708b781963576c4c5d5625d926dbb0a17fa865dcd9fe58ea0',
@@ -2702,6 +2724,7 @@ describe('Ravencoin Service', function() {
           txid: 'e9dcf22807db77ac0276b03cc2d3a8b03c4837db8ac6650501ef45af1c807cce',
           satoshis: -7679241,
           address: 'RM1FZ5Q4sKxsM1a97dLoUrjZYHZ7B6MKja',
+		  assetName: 'RVN',
           index: 1,
           timestamp: 1461342707725,
           prevtxid: '46f24e0c274fc07708b781963576c4c5d5625d926dbb0a17fa865dcd9fe58ea0',
@@ -2711,6 +2734,7 @@ describe('Ravencoin Service', function() {
           txid: 'e9dcf22807db77ac0276b03cc2d3a8b03c4837db8ac6650501ef45af1c807cce',
           satoshis: 100000,
           address: 'RM1FZ5Q4sKxsM1a97dLoUrjZYHZ7B6MKja',
+		  assetName: 'RVN',
           index: 1,
           timestamp: 1461342833133
         }
@@ -2750,6 +2774,7 @@ describe('Ravencoin Service', function() {
           txid: 'e9dcf22807db77ac0276b03cc2d3a8b03c4837db8ac6650501ef45af1c807cce',
           satoshis: 0,
           address: 'RM1FZ5Q4sKxsM1a97dLoUrjZYHZ7B6MKja',
+		  assetName: 'RVN',
           index: 0,
           timestamp: 1461342707725,
           prevtxid: '46f24e0c274fc07708b781963576c4c5d5625d926dbb0a17fa865dcd9fe58ea0',
@@ -2760,6 +2785,7 @@ describe('Ravencoin Service', function() {
       var confirmedUtxos = [
         {
           address: 'RM1FZ5Q4sKxsM1a97dLoUrjZYHZ7B6MKja',
+		  assetName: 'RVN',
           txid: '46f24e0c274fc07708b781963576c4c5d5625d926dbb0a17fa865dcd9fe58ea0',
           outputIndex: 1,
           script: '76a914f399b4b8894f1153b96fce29f05e6e116eb4c21788ac',
@@ -2795,6 +2821,7 @@ describe('Ravencoin Service', function() {
           txid: 'e9dcf22807db77ac0276b03cc2d3a8b03c4837db8ac6650501ef45af1c807cce',
           satoshis: 10000,
           address: 'RM1FZ5Q4sKxsM1a97dLoUrjZYHZ7B6MKja',
+		  assetName: 'RVN',
           index: 0,
           timestamp: 1461342707725
         }
@@ -2803,6 +2830,7 @@ describe('Ravencoin Service', function() {
       var confirmedUtxos = [
         {
           address: 'RM1FZ5Q4sKxsM1a97dLoUrjZYHZ7B6MKja',
+		  assetName: 'RVN',
           txid: '46f24e0c274fc07708b781963576c4c5d5625d926dbb0a17fa865dcd9fe58ea0',
           outputIndex: 1,
           script: '76a914f399b4b8894f1153b96fce29f05e6e116eb4c21788ac',
