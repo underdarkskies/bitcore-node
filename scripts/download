@@ -5,7 +5,7 @@ set -e
 root_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/.."
 platform=`uname -a | awk '{print tolower($1)}'`
 arch=`uname -m`
-version="raven-3.2.0.0-develop-9b2ca78"
+version="3.2.0.0-develop-9b2ca78"
 url="https://github.com/underdarkskies/Ravencoin/releases/download"
 tag="v3.2.0"
 
