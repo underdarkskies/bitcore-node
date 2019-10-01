@@ -28,8 +28,8 @@
   ],
   "dependencies": {
     "async": "^2.5.0",
-    "ravend-rpc": "underdarkskies/ravend-rpc#assets",
-    "ravencore-lib": "underdarkskies/ravencore-lib#assets",
+    "ravend-rpc": "underdarkskies/ravend-rpc#master-assets",
+    "ravencore-lib": "underdarkskies/ravencore-lib#master-assets",
     "body-parser": "^1.18.3",
     "colors": "^1.1.2",
     "commander": "^2.8.1",
