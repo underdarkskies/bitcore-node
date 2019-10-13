@@ -16,11 +16,30 @@ describe('#defaultConfig', function() {
         'ravend',
         'web'
       ],
-      servicesConfig: {
-        ravend: {
+	  messageLog: '',
+	  servicesConfig: {
+        web: {
+          disablePolling: true,
+	      enableSocketRPC: false
+		},
+		'insight-ui': {
+		  routePrefix: '',
+          apiPrefix: 'api'
+		},
+		'insight-api': {
+		  routePrefix: 'api',
+		  coinTicker: 'https://api.coinmarketcap.com/v1/ticker/ravencoin/?convert=USD',
+		  coinShort: 'RVN',
+		},
+		ravend: {
+		  sendTxLog: process.env.HOME + '/.ravencore/pushtx.log',
           spawn: {
             datadir: process.env.HOME + '/.ravencore/data',
-            exec: expectedExecPath
+            exec: expectedExecPath,
+		    rpcqueue: 1000,
+		    rpcport: 8766,
+		    zmqpubrawtx: 'tcp://127.0.0.1:28332',
+		    zmqpubhashblock: 'tcp://127.0.0.1:28332'
           }
         }
       }
@@ -61,11 +80,30 @@ describe('#defaultConfig', function() {
         'insight-api',
         'insight-ui'
       ],
-      servicesConfig: {
-        ravend: {
+	  messageLog: '',	  
+	  servicesConfig: {
+        web: {
+          disablePolling: true,
+	      enableSocketRPC: false
+		},
+		'insight-ui': {
+		  routePrefix: '',
+          apiPrefix: 'api'
+		},
+		'insight-api': {
+		  routePrefix: 'api',
+		  coinTicker: 'https://api.coinmarketcap.com/v1/ticker/ravencoin/?convert=USD',
+		  coinShort: 'RVN',
+		},
+		ravend: {
+		  sendTxLog: process.env.HOME + '/.ravencore/pushtx.log',
           spawn: {
             datadir: process.env.HOME + '/.ravencore/data',
-            exec: expectedExecPath
+            exec: expectedExecPath,
+		    rpcqueue: 1000,
+		    rpcport: 8766,
+		    zmqpubrawtx: 'tcp://127.0.0.1:28332',
+		    zmqpubhashblock: 'tcp://127.0.0.1:28332'
           }
         }
       }
