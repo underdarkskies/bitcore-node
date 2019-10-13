@@ -29,7 +29,7 @@ describe('#defaultConfig', function() {
 		'insight-api': {
 		  routePrefix: 'api',
 		  coinTicker: 'https://api.coinmarketcap.com/v1/ticker/ravencoin/?convert=USD',
-		  coinShort: 'RVN',
+		  coinShort: 'RVN'
 		},
 		ravend: {
 		  sendTxLog: process.env.HOME + '/.ravencore/pushtx.log',
@@ -93,7 +93,7 @@ describe('#defaultConfig', function() {
 		'insight-api': {
 		  routePrefix: 'api',
 		  coinTicker: 'https://api.coinmarketcap.com/v1/ticker/ravencoin/?convert=USD',
-		  coinShort: 'RVN',
+		  coinShort: 'RVN'
 		},
 		ravend: {
 		  sendTxLog: process.env.HOME + '/.ravencore/pushtx.log',
