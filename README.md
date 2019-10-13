@@ -59,3 +59,9 @@ Please send pull requests for bug fixes, code optimization, and ideas for improv
 ## License
 
 Code released under [the MIT license](https://github.com/underdarkskies/ravencore-node/blob/master/LICENSE).
+
+Copyright 2018-2019 UnderDarkSkies
+
+Copyright 2013-2015 BitPay, Inc. 
+
+ - bitcoin: Copyright (c) 2009-2015 Bitcoin Core Developers (MIT License)
