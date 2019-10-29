@@ -115,7 +115,6 @@ describe('Ravencoin Service', function() {
       var events = ravend.getPublishEvents();
       should.exist(events);
       events.length.should.equal(4);
-	  console.log(events);
       events[0].name.should.equal('ravend/rawtransaction');
       events[0].scope.should.equal(ravend);
       events[0].subscribe.should.be.a('function');
@@ -128,7 +127,7 @@ describe('Ravencoin Service', function() {
       events[2].scope.should.equal(ravend);
       events[2].subscribe.should.be.a('function');
       events[2].unsubscribe.should.be.a('function');
-	  events[3].name.should.equal('ravend/addressbalance');
+      events[3].name.should.equal('ravend/addressbalance');
       events[3].scope.should.equal(ravend);
       events[3].subscribe.should.be.a('function');
       events[3].unsubscribe.should.be.a('function');
