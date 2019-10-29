@@ -65,7 +65,6 @@ describe('#create', function() {
       }
 
       var configPath = testDir + '/mynode/ravencore-node.json';
-	  console.log(configPath);
       var packagePath = testDir + '/mynode/package.json';
 
       should.equal(fs.existsSync(configPath), true);

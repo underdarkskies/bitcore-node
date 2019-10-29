@@ -359,7 +359,7 @@ describe('Ravend Functionality', function() {
     });
 
     it('will throw an error for unexpected types (tx decode failed)', function(done) {
-      var garbage = new Buffer('abcdef', 'hex');
+      var garbage = Buffer.from('abcdef', 'hex');
       ravend.sendTransaction(garbage, function(err, hash) {
         should.exist(err);
         should.not.exist(hash);
