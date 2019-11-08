@@ -24,7 +24,7 @@
   },
   "tags": [
     "ravencoin",
-    "ravennd"
+    "ravend"
   ],
   "dependencies": {
     "async": "2.6.2",
